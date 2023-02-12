@@ -1,0 +1,26 @@
+{
+  "name": "create-adastra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": "./create-adastra.mjs"
+  },
+  "bin": {
+    "create-adastra": "./create-adastra.mjs"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist",
+    "create-adastra.js"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "giget": "^1.0.0"
+  }
+}
