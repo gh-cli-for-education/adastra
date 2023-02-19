@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { allPages } from "~/content";
+import { getLangFromSlug, stripLangFromSlug } from "~/util";
+
+export const getStaticPaths = async () => {
+  return allPages.map((page) => {
+    const lang = getLangFromSlug(page.slug);
+    const slug = stripLangFromSlug(page.slug);
+    return {params: {lang, slug}, props: page};
+  })
+};
+
+export type Props = CollectionEntry<"docs">;
+const {data, render} = Astro.props;
+const {Content} = await render();
+---
+<Content />
