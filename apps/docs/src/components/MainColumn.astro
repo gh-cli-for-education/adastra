@@ -3,7 +3,7 @@ export interface Props {
   class?: string;
 }
 
-const { class: propsClass } = Astro.props;
+const { class: propsClass = "" } = Astro.props;
 ---
 
 <div
