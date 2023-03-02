@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import HeadCommon from "~/components/HeadCommon.astro";
+import MainColumn from "~/components/MainColumn.astro";
+
+export interface Props {
+  content: CollectionEntry<"docs">["data"];
+}
+
+const { content } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html dir="ltr" class="">
+  <head>
+    <HeadCommon />
+  </head>
+  <body>
+    <main>
+      <!-- <aside></aside> -->
+      <MainColumn class="flex flex-col h-full min-w-0">
+        <slot />
+      </MainColumn>
+    </main>
+  </body>
+</html>
