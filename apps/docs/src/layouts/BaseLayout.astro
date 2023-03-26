@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import HeadCommon from "~/components/HeadCommon.astro";
+import Header from "~/components/Header/Header.astro";
 import MainColumn from "~/components/MainColumn.astro";
 
 export interface Props {
@@ -8,14 +9,18 @@ export interface Props {
 }
 
 const { content } = Astro.props;
+const formatTitle = (content: { title?: string }) =>
+  content.title ? `${content.title} &#128640; AdAstra` : "AdAstra";
 ---
 
 <!DOCTYPE html>
 <html dir="ltr" class="">
   <head>
     <HeadCommon />
+    <title set:html={formatTitle(content)} />
   </head>
   <body>
+    <Header />
     <main>
       <!-- <aside></aside> -->
       <MainColumn class="flex flex-col h-full min-w-0">

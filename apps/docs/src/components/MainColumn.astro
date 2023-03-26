@@ -7,7 +7,7 @@ const { class: propsClass = "" } = Astro.props;
 ---
 
 <div
-  class={`${propsClass} md:ltr:ml-[length:var(--theme-left-sidebar-width)] md:rtl:mr-[length:var(--theme-left-sidebar-width)] lg:ltr:mr-[length:var(--theme-right-sidebar-width)] lg:rtl:ml-[length:var(--theme-right-sidebar-width)]`}
+  class={`${propsClass} md:ltr:ml-[var(--theme-left-sidebar-width)] md:rtl:mr-[var(--theme-left-sidebar-width)] lg:ltr:mr-[var(--theme-right-sidebar-width)] lg:rtl:ml-[var(--theme-right-sidebar-width)]`}
 >
   <slot />
 </div>

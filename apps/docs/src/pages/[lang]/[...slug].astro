@@ -13,7 +13,7 @@ export const getStaticPaths = async () => {
 };
 
 export type Props = CollectionEntry<"docs">;
-const { data, render } = Astro.props;
+const { data, render, body } = Astro.props;
 const { Content } = await render();
 ---
 
