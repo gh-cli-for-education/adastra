@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Footer from "~/components/Footer/Footer.astro";
 import HeadCommon from "~/components/HeadCommon.astro";
 import Header from "~/components/Header/Header.astro";
 import MainColumn from "~/components/MainColumn.astro";
@@ -18,6 +19,12 @@ const formatTitle = (content: { title?: string }) =>
   <head>
     <HeadCommon />
     <title set:html={formatTitle(content)} />
+    <style>
+      .main-column {
+        @apply md:ltr:ml-[var(--theme-left-sidebar-width)] md:rtl:mr-[var(--theme-left-sidebar-width)];
+        @apply xl:ltr:mr-[var(--theme-left-sidebar-width)] xl:rtl:ml-[var(--theme-left-sidebar-width)];
+      }
+    </style>
   </head>
   <body>
     <Header />
@@ -27,5 +34,10 @@ const formatTitle = (content: { title?: string }) =>
         <slot />
       </MainColumn>
     </main>
+    <div class="main-column">
+      <slot name="footer">
+        <Footer />
+      </slot>
+    </div>
   </body>
 </html>
