@@ -23,6 +23,15 @@ export const isTutorialEntry = (
   return entry.data.type === "tutorial";
 };
 
+export const createIsLangEntry = (lang: string) => {
+  const isLangEntry = (entry: CollectionEntry<"docs">) =>
+    entry.slug.startsWith(lang + "/");
+
+  return isLangEntry;
+};
+
+export const isEnglishEntry = createIsLangEntry("en");
+
 const docs = defineCollection({
   schema: z.union([baseSchema, tutorialSchema]),
 });

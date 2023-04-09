@@ -18,15 +18,14 @@ const lang = currentPage ?? "en";
     class="flex items-center justify-center gap-3 w-full px-[var(--min-spacing-inline)]"
   >
     <div
-      dir="ltr"
       lang="en"
-      class="flex justify-start rlt:justify-end text-base leading-none grow shrink-0 font-semibold text-[hsla(var(--color-base-white)_100%_1)] no-underline gap-2"
+      class="flex ltr:justify-start rlt:justify-end text-base leading-none grow shrink-0 font-semibold text-[hsla(var(--color-base-white)_100%_1)] no-underline gap-2"
     >
-      <ul class="ul-wrapper">
+      <ul dir="ltr" class="ul-wrapper">
         <li class="ul-wrapper">
           <a
-            class="overflow-hidden w-10 md:w-auto py-2 px-1 -my-2 -mx-1 transition-transform duration-200 hover:opacity-100 hover:translate-y-[-2px] focus:opacity-100 focus:translate-y-[-20px]"
-            href="https://docs.adastra.vercel.app/"
+            class="overflow-hidden w-10 md:w-auto py-2 px-1 -my-2 -mx-1 transition-transform duration-200 hover:opacity-100 hover:translate-y-[-2px] focus:opacity-100 focus:translate-y-[-2px]"
+            href={Astro.site}
           >
             <svg
               class="h-10 w-auto block text-[color:var(--theme-accent)]"
@@ -56,7 +55,7 @@ const lang = currentPage ?? "en";
         </li>
         <li class="ul-wrapper">
           <a
-            class="docs hidden py-2 px-1 -my-2 -mx-1 transition-transform duration-200 hover:opacity-100 hover:translate-y-[-2px] focus:opacity-100 focus:translate-y-[-20px]"
+            class="docs hidden py-2 px-1 -my-2 -mx-1 transition-transform duration-200 hover:opacity-100 hover:translate-y-[-2px] focus:opacity-100 focus:translate-y-[-2px]"
             href={`/${lang}/getting-started/`}
           >
             <svg

@@ -76,14 +76,12 @@ const themes: Theme[] = ["light", "dark"];
   let currentTheme = getDefaultTheme();
   labels[currentTheme]?.classList.add("checked");
 
-  console.log(localStorage);
   themes.forEach((theme) => {
     toggles[theme]?.addEventListener("click", () => {
       if (currentTheme === theme) return;
 
       currentTheme = theme;
       localStorage.theme = theme;
-      // document.style.colorScheme = theme;
       themes.forEach((theme) => labels[theme]?.classList.toggle("checked"));
     });
   });

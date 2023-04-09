@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import Footer from "~/components/Footer/Footer.astro";
 import HeadCommon from "~/components/HeadCommon.astro";
 import Header from "~/components/Header/Header.astro";
+import LeftSidebar from "~/components/LeftSideBar/LeftSidebar.astro";
 import MainColumn from "~/components/MainColumn.astro";
 
 export interface Props {
@@ -10,34 +11,41 @@ export interface Props {
 }
 
 const { content } = Astro.props;
+const url = Astro.url;
+const currentPage = url.pathname;
 const formatTitle = (content: { title?: string }) =>
-  content.title ? `${content.title} 🚀 AdAstra` : "AdAstra";
+  content.title ? `${content.title} 🚀s AdAstra` : "AdAstra";
 ---
 
 <!DOCTYPE html>
-<html dir="ltr" class="">
+<html dir="ltr" class="bg-[color:var(--theme-bg-gradient-bottom)]">
   <head>
     <HeadCommon />
     <title set:html={formatTitle(content)} />
-    <style>
-      .main-column {
-        @apply md:ltr:ml-[var(--theme-left-sidebar-width)] md:rtl:mr-[var(--theme-left-sidebar-width)];
-        @apply xl:ltr:mr-[var(--theme-left-sidebar-width)] xl:rtl:ml-[var(--theme-left-sidebar-width)];
-      }
-    </style>
   </head>
-  <body>
+  <body
+    class="before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] before:bg-[color:var(--theme-bg-gradient)] text-[color:var(--theme-text)] flex flex-col min-h-screen font-sans text-base leading-6"
+  >
     <Header />
     <main>
-      <!-- <aside></aside> -->
+      <aside
+        class="fixed t-0 b-0 p-0 hidden bg-[color:var(--theme-bg-gradient)] z-10 inset-y-0 md:flex md:ltr:pl-[var(--min-spacing-inline)] md:rtl:pr-[var(--min-spacing-inline)] md:ltr:pr-4 md:rtl:pl-4 md:top-[var(--theme-navbar-height)] md:w-[var(--theme-left-sidebar-width)] md:bg-transparent"
+      >
+        <slot name="primary-sidebar">
+          <LeftSidebar currentPage={currentPage} />
+        </slot>
+      </aside>
+      <aside class="fixed t-0 b-0 p-0">
+        <slot name="secondary-sidebar" />
+      </aside>
       <MainColumn class="flex flex-col h-full min-w-0">
         <slot />
       </MainColumn>
     </main>
-    <div class="main-column">
+    <MainColumn>
       <slot name="footer">
         <Footer />
       </slot>
-    </div>
+    </MainColumn>
   </body>
 </html>
