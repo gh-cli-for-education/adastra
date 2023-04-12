@@ -3,6 +3,7 @@ import type { TabType } from "~/i18n/translation-checkers";
 import { removeLeadingSlash, removeTrailingSlash } from "~/util";
 import { getNav } from "~/util/getNav";
 import { getPageCategory } from "~/util/getPageCategory";
+import ThemeToggleButton from "../Header/ThemeToggleButton";
 import SidebarContent from "./SidebarContent.astro";
 
 export interface Props {
@@ -58,5 +59,8 @@ if (isReference) {
       sidebarSections={apiSections}
       currentPageMatch={currentPageMatch}
     />
+    <li class="text-center">
+      <ThemeToggleButton client:visible />
+    </li>
   </ul>
 </nav>

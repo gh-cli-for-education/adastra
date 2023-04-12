@@ -24,12 +24,12 @@ const formatTitle = (content: { title?: string }) =>
     <title set:html={formatTitle(content)} />
   </head>
   <body
-    class="before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] before:bg-[color:var(--theme-bg-gradient)] text-[color:var(--theme-text)] flex flex-col min-h-screen font-sans text-base leading-6"
+    class="group before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] before:bg-[color:var(--theme-bg-gradient)] text-[color:var(--theme-text)] flex flex-col min-h-screen font-sans text-base leading-6"
   >
     <Header />
     <main>
       <aside
-        class="fixed t-0 b-0 p-0 hidden bg-[color:var(--theme-bg-gradient)] z-10 inset-y-0 md:flex md:ltr:pl-[var(--min-spacing-inline)] md:rtl:pr-[var(--min-spacing-inline)] md:ltr:pr-4 md:rtl:pl-4 md:top-[var(--theme-navbar-height)] md:w-[var(--theme-left-sidebar-width)] md:bg-transparent"
+        class="group-sidebar:!block group-sidebar:top-[var(--theme-navbar-height)] ltr:group-sidebar:right-0 rtl:group-sidebar:left-0 fixed inset-y-0 p-0 hidden bg-[color:var(--theme-bg-gradient)] z-10 ltr:left-0 rtl:right-0 md:flex md:ltr:pl-[var(--min-spacing-inline)] md:rtl:pr-[var(--min-spacing-inline)] md:ltr:pr-4 md:rtl:pl-4 md:top-[var(--theme-navbar-height)] md:w-[var(--theme-left-sidebar-width)] md:bg-transparent"
       >
         <slot name="primary-sidebar">
           <LeftSidebar currentPage={currentPage} />

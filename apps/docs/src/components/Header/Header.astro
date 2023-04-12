@@ -1,10 +1,11 @@
 ---
+import { Content } from "~/content/docs/en/getting-started.md";
+import SidebarToggle from "./SidebarToggle";
+import ThemeToggleButton from "./ThemeToggleButton";
+
 export interface Props {
   currentPage?: string;
 }
-
-import { Content } from "~/content/docs/en/getting-started.md";
-import ToggleThemeButton from "./ToggleThemeButton.astro";
 
 const { currentPage } = Astro.props;
 // TODO: Use i18n to get lang
@@ -76,7 +77,8 @@ const lang = currentPage ?? "en";
         </li>
       </ul>
     </div>
-    <ToggleThemeButton isInsideHeader />
+    <ThemeToggleButton isInsideHeader client:visible />
+    <SidebarToggle client:idle />
   </nav>
 </header>
 
