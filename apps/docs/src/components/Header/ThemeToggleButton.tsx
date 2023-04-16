@@ -48,12 +48,12 @@ const getDefaultTheme = (): Theme => {
   return "light";
 };
 
+const [currentTheme, setCurrentTheme] = createSignal<Theme>("light");
+
 const ThemeToggleButton: Component<ThemeToggleButtonProps> = (
   undefaultedProps
 ) => {
   const props = mergeProps(defaultProps, undefaultedProps);
-
-  const [currentTheme, setCurrentTheme] = createSignal<Theme>("light");
 
   onMount(() => setCurrentTheme(getDefaultTheme()));
 
