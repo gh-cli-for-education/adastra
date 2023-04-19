@@ -1,22 +1,7 @@
 import type { Component } from "solid-js";
 import { For } from "solid-js";
+import { NavegationTab } from "../../util";
 import NavegationTabContent from "./NavegationTabContent";
-
-export type Entry = {
-  text: string;
-  slug: string;
-  isFallback?: boolean;
-};
-
-export type Section = {
-  name: string;
-  entries: Entry[];
-};
-
-export type NavegationTab = {
-  type: string;
-  sections: Section[];
-};
 
 type LeftSidebarProps = {
   navigation: NavegationTab[];

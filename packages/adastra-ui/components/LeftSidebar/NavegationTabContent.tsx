@@ -1,5 +1,5 @@
 import { Component, For, Show } from "solid-js";
-import type { Section } from "./LeftSidebar";
+import { Section } from "../../util";
 
 type NavegationTabContentProps = {
   type: string;
