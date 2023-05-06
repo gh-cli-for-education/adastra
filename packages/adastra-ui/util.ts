@@ -23,7 +23,7 @@ type NavegationTabWithId = WithId<
   }
 >;
 
-const navegationTabsByLang: Record<string, NavegationTab[]> = {};
+let navegationTabs: NavegationTab[] | undefined = undefined;
 
 const kebabCaseToTitleCase = (text: string) => {
   const textWithSpace = text.replace(/-/g, " ");
@@ -104,28 +104,22 @@ const getEntryIndex = (
   return sectionIndex;
 };
 
-export const resetNavigation = (language: string) => {
-  delete navegationTabsByLang[language];
+export const resetNavigation = () => {
+  navegationTabs = undefined;
 };
 
-export const getNavigation = async (
-  language: string
-): Promise<NavegationTab[]> => {
-  if (language in navegationTabsByLang) return navegationTabsByLang[language];
+export const getNavigation = async (): Promise<NavegationTab[]> => {
+  if (navegationTabs != undefined) return navegationTabs;
 
   const allPages = await getCollection("docs");
   const allRoutes = allPages.map(({ slug }) => slug);
-  const separatedRoutes = allRoutes.map((route) => route.split("/"));
-  const routes = separatedRoutes
-    .filter(([lang]) => lang === language)
-    .map(([_, ...routesWithoutLang]) => routesWithoutLang);
+  const routes = allRoutes.map((route) => route.split("/"));
 
   const navigationWithId: NavegationTabWithId[] = [];
   routes.forEach((route) => {
     if (route == undefined) return;
     if (route.length < 2 || route.length > 3) return;
 
-    // TODO: length 3 section with entries as links
     const [tab, section, entry] = route;
     if (entry != undefined) {
       const { id: tabId, text: tabText } = extractIdAndText(tab);
@@ -155,13 +149,9 @@ export const getNavigation = async (
       );
       if (entryIndex == undefined) return;
     }
-
-    // TODO: length 2 section as link
-
-    // TODO: check fallback to english
   });
 
-  navegationTabsByLang[language] = navigationWithId
+  navegationTabs = navigationWithId
     .sort((firstNav, secondNav) => firstNav.id - secondNav.id)
     .map(({ sections, type }) => ({
       type,
@@ -177,5 +167,5 @@ export const getNavigation = async (
         })),
     }));
 
-  return navegationTabsByLang[language];
+  return navegationTabs;
 };
