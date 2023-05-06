@@ -14,7 +14,7 @@ export interface Props {
   sidebarSections: {
     text: string;
     type: TabType;
-    children: { text: string; slug: string; isFallback?: boolean }[];
+    children: { text: string; slug: string }[];
   }[];
   currentPageMatch: string;
 }
@@ -51,7 +51,7 @@ const lang = getLangFromSlug(slug as CollectionEntry<"docs">["slug"]);
           </h2>
         </summary>
         <ul>
-          {section.children.map(({ slug, text, isFallback }) => (
+          {section.children.map(({ slug, text }) => (
             <li>
               <a
                 class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-[color:var(--theme-text-lighter)] no-underline block hover:bg-[color:var(--theme-bg-hover)] focus:bg-[color:var(--theme-bg-hover)] focus:outline focus:outline-2 aria-[current=page]:text-[color:var(--theme-text)] data-[current-parent=true]:text-[color:var(--theme-text)] aria-[current=page]:bg-[color:var(--theme-bg-accent)] data-[current-parent=true]:bg-[color:var(--theme-bg-accent)] aria-[current=page]:font-medium data-[current-parent=true]:font-medium aria-[current=page]:outline-1 data-[current-parent=true]:outline-1 aria-[current=page]:outline data-[current-parent=true]:outline aria-[current=page]:outline-transparent data-[current-parent=true]:outline-transparent aria-[current=page]:focus:outline-2 data-[current-parent=true]:focus:outline-2 aria-[current=page]:focus:outline data-[current-parent=true]:focus:outline dark:aria-[current=page]:text-[hsla(var(--color-base-white),100%,1)] dark:data-[current-parent=true]:text-[hsla(var(--color-base-white),100%,1)]"
@@ -64,11 +64,6 @@ const lang = getLangFromSlug(slug as CollectionEntry<"docs">["slug"]);
                 }`}
               >
                 <Fragment set:html={text} />
-                {isFallback && (
-                  <sup class="text-xs font-bold text-[color:var(--theme-text-light)]">
-                    EN
-                  </sup>
-                )}
               </a>
             </li>
           ))}

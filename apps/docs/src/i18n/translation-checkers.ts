@@ -6,7 +6,6 @@ export type NavDict = Array<
   {
     text: string;
     key: NavDictionaryKeys;
-    isFallback?: boolean;
   } & ({ slug: string } | { header: true; type: TabType })
 >;
 

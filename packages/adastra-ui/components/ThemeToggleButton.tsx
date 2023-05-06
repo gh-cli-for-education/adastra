@@ -59,7 +59,7 @@ const ThemeToggleButton: Component<ThemeToggleButtonProps> = (
 
   return (
     <div
-      class={`items-center gap- py-1 px-2 mt-8 rounded-full bg-[var(--theme-code-inline-bg)] outline-none md:mt-0 ${
+      class={`items-center gap-1 py-1 px-2 mt-8 rounded-full bg-[var(--theme-code-inline-bg)] outline-none md:mt-0 ${
         props.isInsideHeader ? "hidden md:inline-flex" : "inline-flex md:hidden"
       }`}
     >

@@ -1,5 +1,5 @@
 {
-  "name": "create-adastra",
+  "name": "create-adastra-lms",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,6 +21,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@astrojs/cli-kit": "^0.2.3",
+    "execa": "^7.1.1",
     "giget": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/which-pm-runs": "^1.0.0",
+    "arg": "^5.0.2",
+    "strip-ansi": "^7.0.1",
+    "tsconfig": "workspace:*",
+    "which-pm-runs": "^1.1.0"
   }
 }

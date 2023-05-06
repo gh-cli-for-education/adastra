@@ -14,19 +14,20 @@ const slugsByLang: Record<string, Set<string>> = Object.fromEntries(
   ])
 );
 
-const markFallbackNavEntries = async (lang: string, nav: NavDict) => {
-  const slugs = slugsByLang[lang];
+// const markFallbackNavEntries = (lang: string, nav: NavDict) => {
+//   const slugs = slugsByLang[lang];
 
-  for (const entry of nav) {
-    if ("header" in entry) continue;
-    if (!(slugs.has(entry.slug) || slugs.has(entry.slug + "/index")))
-      entry.isFallback = true;
-  }
+//   for (const entry of nav) {
+//     if ("header" in entry) continue;
+//     if (!(slugs.has(entry.slug) || slugs.has(entry.slug + "/index")))
+//       entry.isFallback = true;
+//   }
 
-  return nav;
-};
+//   return nav;
+// };
 
-export const getNav = async (Astro: AstroGlobal): Promise<NavDict> => {
+export const getNav = (Astro: AstroGlobal): NavDict => {
   const lang = getLangFromUrl(Astro.url.pathname) || fallbackLang;
-  return await markFallbackNavEntries(lang, navTranslations[lang]);
+  // return markFallbackNavEntries(lang, navTranslations[lang]);
+  return navTranslations[lang];
 };

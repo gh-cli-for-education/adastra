@@ -60,6 +60,7 @@ if (isReference) {
       currentPageMatch={currentPageMatch}
     />
     <li class="text-center">
+      <slot name="theme-toggle" />
       <ThemeToggleButton client:visible />
     </li>
   </ul>
