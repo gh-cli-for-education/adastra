@@ -19,6 +19,6 @@
     "eslint": "^7.23.0",
     "eslint-config-custom": "workspace:*",
     "tsconfig": "workspace:*",
-    "typescript": "^4.7.4"
+    "typescript": "^5.0.4"
   }
 }
