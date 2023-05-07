@@ -96,12 +96,14 @@ importers:
     specifiers:
       '@astrojs/solid-js': ^2.1.0
       '@astrojs/tailwind': ^3.0.1
+      adastra-ui: workspace:*
       astro: ^2.4.2
       solid-js: ^1.4.3
       tailwindcss: ^3.0.24
     dependencies:
       '@astrojs/solid-js': 2.1.0_solid-js@1.7.3
       '@astrojs/tailwind': 3.0.1_cijrul4o7qeeydgmhcma5a2ogm
+      adastra-ui: link:../../packages/adastra-ui
       astro: 2.4.2
       solid-js: 1.7.3
       tailwindcss: 3.2.7
@@ -248,9 +250,9 @@ packages:
     dependencies:
       '@proload/core': 0.3.3
       astro: 2.4.2
-      autoprefixer: 10.4.13_postcss@8.4.21
-      postcss: 8.4.21
-      postcss-load-config: 4.0.1_postcss@8.4.21
+      autoprefixer: 10.4.13_postcss@8.4.23
+      postcss: 8.4.23
+      postcss-load-config: 4.0.1_postcss@8.4.23
       tailwindcss: 3.2.7
     transitivePeerDependencies:
       - ts-node
@@ -1608,6 +1610,22 @@ packages:
       normalize-range: 0.1.2
       picocolors: 1.0.0
       postcss: 8.4.21
+      postcss-value-parser: 4.2.0
+    dev: false
+
+  /autoprefixer/10.4.13_postcss@8.4.23:
+    resolution: {integrity: sha512-49vKpMqcZYsJjwotvt4+h/BCjJVnhGwcLpDt5xkcaOG3eLrG/HUYLagrihYsQ+qrIBgIzX1Rw7a6L8I/ZA1Atg==}
+    engines: {node: ^10 || ^12 || >=14}
+    hasBin: true
+    peerDependencies:
+      postcss: ^8.1.0
+    dependencies:
+      browserslist: 4.21.5
+      caniuse-lite: 1.0.30001456
+      fraction.js: 4.2.0
+      normalize-range: 0.1.2
+      picocolors: 1.0.0
+      postcss: 8.4.23
       postcss-value-parser: 4.2.0
     dev: false
 
@@ -4104,6 +4122,23 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.21
+      yaml: 2.2.1
+    dev: false
+
+  /postcss-load-config/4.0.1_postcss@8.4.23:
+    resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
+    engines: {node: '>= 14'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.1.0
+      postcss: 8.4.23
       yaml: 2.2.1
     dev: false
 

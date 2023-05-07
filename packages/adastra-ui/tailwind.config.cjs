@@ -7,7 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "rgb(255 115 179 <alpha-value>)",
+        primary: "rgb(51 153 255 / <alpha-value>)",
+        "dark-primary": "rgb(51 153 255 / <alpha-value>)",
+        secondary: "rgb(135 45 230 / <alpha-value>)",
+        "dark-secondary": "rgb(135 45 230 / <alpha-value>)",
+        neutral: "rgb(135 45 230 / <alpha-value>)",
+        "dark-neutral": "rgb(241 240 244 / <alpha-value>)",
+        text: "rgb(23 22 29 / <alpha-value>)",
+        "dark-text": "rgb(227 226 233 / <alpha-value>)",
+        bg: "rgb(253 254 255 / <alpha-value>)",
+        "dark-bg": "rgb(23 20 36 / <alpha-value>)",
       },
     },
   },

@@ -6,7 +6,6 @@ type NavegationTabContentProps = {
   active: boolean;
   sections: Section[];
   currentPage: string;
-  lang: string;
   pathname: string;
 };
 
@@ -40,7 +39,7 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
                   <li>
                     <a
                       class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-[color:var(--theme-text-lighter)] no-underline block hover:bg-[color:var(--theme-bg-hover)] focus:bg-[color:var(--theme-bg-hover)] focus:outline focus:outline-2 aria-[current=page]:text-[color:var(--theme-text)] aria-[current=page]:bg-[color:var(--theme-bg-accent)] aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline dark:aria-[current=page]:text-[hsla(var(--color-base-white),100%,1)]"
-                      href={`${props.pathname}${props.lang}/${entries.slug}/`}
+                      href={`${props.pathname}${entries.slug}/`}
                       aria-current={`${
                         props.currentPage.endsWith(entries.slug)
                           ? "page"

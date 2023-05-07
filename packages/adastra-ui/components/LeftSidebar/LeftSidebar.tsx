@@ -1,4 +1,4 @@
-import type { Component } from "solid-js";
+import type { Component, ParentProps } from "solid-js";
 import { For } from "solid-js";
 import { NavegationTab } from "../../util";
 import NavegationTabContent from "./NavegationTabContent";
@@ -6,7 +6,6 @@ import NavegationTabContent from "./NavegationTabContent";
 type LeftSidebarProps = {
   navigation: NavegationTab[];
   currentPage: string;
-  lang: string;
   pathname: string;
 };
 
@@ -20,7 +19,6 @@ const LeftSidebar: Component<LeftSidebarProps> = (props) => {
               type={tab.type}
               active={index() === 0}
               currentPage={props.currentPage}
-              lang={props.lang}
               pathname={props.pathname}
               sections={tab.sections}
             />

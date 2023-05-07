@@ -42,8 +42,10 @@ const getDefaultTheme = (): Theme => {
     localStorage.theme === "dark" ||
     (!("theme" in localStorage) &&
       window.matchMedia("(prefers-color-scheme: dark)").matches)
-  )
+  ) {
+    document.documentElement.classList.add("dark");
     return "dark";
+  }
 
   return "light";
 };
@@ -59,7 +61,7 @@ const ThemeToggleButton: Component<ThemeToggleButtonProps> = (
 
   return (
     <div
-      class={`items-center gap-1 py-1 px-2 mt-8 rounded-full bg-[var(--theme-code-inline-bg)] outline-none md:mt-0 ${
+      class={`items-center gap-1 py-1 px-2 mt-8 rounded-full bg-neutral/10 dark:bg-dark-neutral/10 outline-none md:mt-0 ${
         props.isInsideHeader ? "hidden md:inline-flex" : "inline-flex md:hidden"
       }`}
     >
@@ -72,13 +74,17 @@ const ThemeToggleButton: Component<ThemeToggleButtonProps> = (
 
           setCurrentTheme(theme);
           localStorage.theme = theme;
+          if (theme === "dark")
+            return document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("dark");
         };
 
         return (
           <label
+            title={`Use ${theme} theme`}
             class={`${
-              checked() && "!text-[color:var(--theme-accent)] !opacity-100"
-            } focus-within:outline-none focus-within:shadow-[0_0_0_0.08rem_var(--theme-accent),_0_0_0_0.12rem_white] text-[color:var(--theme-code-inline-text)] relative flex items-center justify-center opacity-50 cursor-pointer`}
+              checked() ? "!text-primary !opacity-100 " : ""
+            }focus-within:outline-none focus-within:shadow-[0_0_0_0.08rem_theme(colors.primary),_0_0_0_0.12rem_white] text-text dark:text-dark-text relative flex items-center justify-center opacity-50 cursor-pointer`}
           >
             {icon}
             <input
