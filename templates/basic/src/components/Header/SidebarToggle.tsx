@@ -7,7 +7,7 @@ const SidebarToggle: Component = () => {
     const body = document.getElementsByTagName("body")[0];
 
     if (sidebarShow()) {
-      body.classList.add("mobile-sidebar-toggle");
+      document.documentElement.classList.add("mobile-sidebar-toggle");
       document
         .querySelector('details a[data-current-parent="true"]')
         ?.closest("details")
@@ -15,7 +15,7 @@ const SidebarToggle: Component = () => {
       return;
     }
 
-    body.classList.remove("mobile-sidebar-toggle");
+    document.documentElement.classList.remove("mobile-sidebar-toggle");
     document.querySelectorAll("aside nav details").forEach((e) => {
       e.setAttribute("open", "");
     });

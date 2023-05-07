@@ -24,7 +24,7 @@ type NavegationTabWithId = WithId<
 
 let navegationTabs: NavegationTab[] | undefined = undefined;
 
-const kebabCaseToTitleCase = (text: string) => {
+export const kebabCaseToTitleCase = (text: string) => {
   const textWithSpace = text.replace(/-/g, " ");
   const lowerCaseText = textWithSpace.toLowerCase();
   const titleCase = lowerCaseText.replace(

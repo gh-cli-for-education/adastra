@@ -1,4 +1,4 @@
-import type { Component } from "solid-js";
+import type { JSX, ParentComponent } from "solid-js";
 import { For } from "solid-js";
 import { NavegationTab } from "../../util";
 import NavegationTabContent from "./NavegationTabContent";
@@ -7,11 +7,14 @@ type LeftSidebarProps = {
   navigation: NavegationTab[];
   currentPage: string;
   pathname: string;
+  themeToggle?: JSX.Element;
+  tabToggle?: JSX.Element;
 };
 
-const LeftSidebar: Component<LeftSidebarProps> = (props) => {
+const LeftSidebar: ParentComponent<LeftSidebarProps> = (props) => {
   return (
     <nav class="w-full h-full text-sm">
+      {props.tabToggle}
       <ul class="pt-4 max-h-full overflow-x-visible overflow-y-auto md:fixed md:top-[calc(theme(spacing.navbar-height)+3em)]  md:bottom-0 md:w-[calc(theme(spacing.sidebar-width)-1.5rem*1.6)]">
         <For each={props.navigation}>
           {(tab, index) => (
@@ -24,12 +27,8 @@ const LeftSidebar: Component<LeftSidebarProps> = (props) => {
             />
           )}
         </For>
-        <li class="text-center">
-          <slot name="theme-toggle" />
-        </li>
-        <li class="text-center">
-          <slot />
-        </li>
+        <li class="text-center">{props.themeToggle}</li>
+        <li class="text-center">{props.children}</li>
       </ul>
     </nav>
   );

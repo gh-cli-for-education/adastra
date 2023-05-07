@@ -6,6 +6,7 @@ import Header from "~/components/Header/Header.astro";
 import MainColumn from "~/components/MainColumn.astro";
 import {
   LeftSidebar,
+  SidebarToggleTabGroup,
   ThemeToggleButton,
   getNavigation,
   resetNavigation,
@@ -25,26 +26,34 @@ const formatTitle = (content: { title?: string }) =>
 ---
 
 <!DOCTYPE html>
-<html dir="ltr">
+<html dir="ltr" class="group">
   <head>
     <HeadCommon />
     <title set:html={formatTitle(content)} />
   </head>
   <body
-    class="bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to group before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6"
+    class="bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 group-sidebar:overflow-hidden"
   >
     <Header />
     <main>
       <aside
-        class="group-sidebar:!block group-sidebar:top-[var(--theme-navbar-height)] ltr:group-sidebar:right-0 rtl:group-sidebar:left-0 fixed inset-y-0 p-0 hidden bg-[color:var(--theme-bg-gradient)] z-10 ltr:left-0 rtl:right-0 md:flex md:ltr:pl-[var(--min-spacing-inline)] md:rtl:pr-[var(--min-spacing-inline)] md:ltr:pr-4 md:rtl:pl-4 md:top-[var(--theme-navbar-height)] md:w-[var(--theme-left-sidebar-width)] md:bg-transparent"
+        class="fixed inset-y-0 p-0 hidden z-10 ltr:left-0 rtl:right-0 md:flex md:ltr:pl-min-md md:rtl:pr-min-md md:ltr:pr-4 md:rtl:pl-4 md:top-navbar-height md:w-sidebar-width group-sidebar:!block group-sidebar:top-navbar-height ltr:group-sidebar:right-0 rtl:group-sidebar:left-0"
       >
         <slot name="primary-sidebar">
           <LeftSidebar navigation={navigation} currentPage="" pathname="">
+            <SidebarToggleTabGroup
+              slot="tab-toggle"
+              client:idle
+              defaultTab={navigation[0].type}
+              tabs={navigation.map((tab) => tab.type)}
+            />
             <ThemeToggleButton slot="theme-toggle" client:idle />
           </LeftSidebar>
         </slot>
       </aside>
-      <aside class="fixed t-0 b-0 p-0">
+      <aside
+        class="fixed inset-y-0 p-0 hidden top-navbar-height ltr:right-0 rtl:left-0 w-right-sidebar-width lg:flex"
+      >
         <slot name="secondary-sidebar" />
       </aside>
       <MainColumn class="flex flex-col h-full min-w-0">

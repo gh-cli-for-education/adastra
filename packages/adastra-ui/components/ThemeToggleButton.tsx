@@ -88,7 +88,7 @@ const ThemeToggleButton: Component<ThemeToggleButtonProps> = (
           >
             {icon}
             <input
-              class="absolute opacity-0 top-0 right-0 left-0 bottom-0 -z-[1] peer"
+              class="absolute opacity-0 top-0 right-0 left-0 bottom-0 -z-[1]"
               type="radio"
               name="theme-toggle"
               checked={checked()}
