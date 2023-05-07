@@ -1,4 +1,4 @@
-import { Component, For, Show } from "solid-js";
+import { Component, For } from "solid-js";
 import { Section } from "../../util";
 
 type NavegationTabContentProps = {
@@ -17,6 +17,7 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
           <details class="group" open>
             <summary class="text-base font-semibold py-1.5 px-8 md:py-1 md:px-4 list-none marker:hidden cursor-pointer">
               <h2 class="m-0 p-0">
+                {section.name}
                 <svg
                   class="rotate-0 transition-transform align-middle group-open:rotate-90 rtl:rotate-180 m-0 inline"
                   xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +39,7 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
                 {(entries) => (
                   <li>
                     <a
-                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-[color:var(--theme-text-lighter)] no-underline block hover:bg-[color:var(--theme-bg-hover)] focus:bg-[color:var(--theme-bg-hover)] focus:outline focus:outline-2 aria-[current=page]:text-[color:var(--theme-text)] aria-[current=page]:bg-[color:var(--theme-bg-accent)] aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline dark:aria-[current=page]:text-[hsla(var(--color-base-white),100%,1)]"
+                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-text/80 dark:text-dark-text/80 no-underline block hover:bg-secondary/10 focus:bg-secondary/10 dark:hover:bg-secondary/20 dark:focus:bg-secondary/20 focus:outline focus:outline-2 aria-[current=page]:text-text dark:aria-[current=page]:text-dark-text aria-[current=page]:bg-secundary/20 aria-[current=page]:bg-dark-secundary/40 aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline"
                       href={`${props.pathname}${entries.slug}/`}
                       aria-current={`${
                         props.currentPage.endsWith(entries.slug)
@@ -47,11 +48,6 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
                       }`}
                     >
                       {entries.text}
-                      <Show when={entries.isFallback}>
-                        <sup class="text-xs font-bold text-[color:var(--theme-text-light)]">
-                          EN
-                        </sup>
-                      </Show>
                     </a>
                   </li>
                 )}

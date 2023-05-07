@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 export type Entry = {
   text: string;
   slug: string;
-  isFallback?: boolean;
 };
 
 export type Section = {
