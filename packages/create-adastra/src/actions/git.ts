@@ -14,12 +14,13 @@ const init = async ({ cwd }: { cwd: string }) => {
       [
         "commit",
         "-m",
-        "Initial commit from Astro",
-        '--author="houston[bot] <astrobot-houston@users.noreply.github.com>"',
+        "Initial commit from AdAstra",
       ],
       { cwd, stdio: "ignore" }
     );
-  } catch (e) {}
+  } catch (e) {
+    console.log(e)
+  }
 };
 
 export const git = async (context: Context) => {

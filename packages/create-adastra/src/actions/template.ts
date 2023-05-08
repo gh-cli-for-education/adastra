@@ -6,7 +6,10 @@ import { error, info, title } from "../messages.js";
 import type { Context } from "./context.js";
 
 const FILES_TO_UPDATE = {
-  "package.json": (file: string, overrides: { name: string }) =>
+  "package.json": (
+    file: string,
+    overrides: { name: string; scripts: Record<string, string> }
+  ) =>
     fs.promises.readFile(file, "utf-8").then((value) => {
       // Match first indent in the file or fallback to `\t`
       const indent = /(^\s+)/m.exec(value)?.[1] ?? "\t";
@@ -26,7 +29,7 @@ const FILES_TO_UPDATE = {
 };
 
 const copyTemplate = async (template: string, context: Context) => {
-  const templateTarget = `github:withastro/astro/examples/${template}#latest`;
+  const templateTarget = `github:gh-cli-for-education/adastra/templates/${template}`;
 
   // Copy
   try {
@@ -34,10 +37,10 @@ const copyTemplate = async (template: string, context: Context) => {
       force: true,
       provider: "github",
       cwd: context.cwd,
-      dir: ".",
+      dir: "./.adastra",
     });
   } catch (err: any) {
-    fs.rmdirSync(context.cwd);
+    fs.rmdirSync(context.cwd + "/.adastra");
     if (err.message.includes("404")) {
       throw new Error(
         `Template ${color.reset(template)} ${color.dim("does not exist!")}`
@@ -51,24 +54,32 @@ const copyTemplate = async (template: string, context: Context) => {
   // But the template route is invalid (ex. `withastro/astro/examples/DNE`).
   // `giget` doesn't throw for this case,
   // so check if the directory is still empty as a heuristic.
-  if (fs.readdirSync(context.cwd).length === 0) {
+  if (fs.readdirSync(context.cwd + "/.adastra").length === 0) {
     throw new Error(
       `Template ${color.reset(template)} ${color.dim("is empty!")}`
     );
   }
+
+  fs.renameSync(
+    `${context.cwd}/.adastra/package.json`,
+    `${context.cwd}/package.json`
+  );
 
   // Post-process in parallel
   const updateFiles = Object.entries(FILES_TO_UPDATE).map(
     async ([file, update]) => {
       const fileLoc = path.resolve(path.join(context.cwd, file));
       if (fs.existsSync(fileLoc)) {
-        return update(fileLoc, { name: context.projectName! });
+        return update(fileLoc, {
+          name: context.projectName!,
+          scripts: { dev: "prueba" },
+        });
       }
     }
   );
 
   await Promise.all([...updateFiles]);
-}
+};
 
 export const template = async (context: Context) => {
   if (!context.template) {
@@ -77,11 +88,11 @@ export const template = async (context: Context) => {
       type: "select",
       label: title("tmpl"),
       message: "How would you like to start your new project?",
-      initial: "basics",
+      initial: "basic",
       choices: [
         {
-          value: "basics",
-          label: "Include sample files",
+          value: "basic",
+          label: "Basic LMS",
           hint: "(recommended)",
         },
         // { value: "blog", label: "Use blog template" },
