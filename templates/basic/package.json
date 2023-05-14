@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@astrojs/solid-js": "^2.1.0",
-    "@astrojs/tailwind": "^3.0.1",
+    "@astrojs/tailwind": "^3.1.2",
     "adastra-ui": "workspace:*",
     "astro": "^2.4.2",
     "solid-js": "^1.4.3",
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.3.2"
   }
 }

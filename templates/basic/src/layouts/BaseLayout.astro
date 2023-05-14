@@ -11,31 +11,34 @@ import {
   getNavigation,
   resetNavigation,
 } from "adastra-ui";
+import PageContent from "~/components/PageContent.astro";
+
+import "./base.css";
 
 const navigation = await getNavigation();
 
 export interface Props {
-  content: CollectionEntry<"docs">["data"];
+  data: CollectionEntry<"docs">["data"];
 }
 
-const { content } = Astro.props;
+const { data } = Astro.props;
 const url = Astro.url;
 const currentPage = url.pathname;
-const formatTitle = (content: { title?: string }) =>
-  content.title ? `${content.title} 🚀s AdAstra` : "AdAstra";
+const formatTitle = (data: { title?: string }) =>
+  data.title ? `${data.title} 🚀s AdAstra` : "AdAstra";
 ---
 
 <!DOCTYPE html>
 <html dir="ltr" class="group">
   <head>
     <HeadCommon />
-    <title set:html={formatTitle(content)} />
+    <title set:html={formatTitle(data)} />
   </head>
   <body
-    class="bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 group-sidebar:overflow-hidden"
+    class="before:bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 group-sidebar:overflow-hidden"
   >
     <Header />
-    <main>
+    <main class="min-h-screen">
       <aside
         class="fixed inset-y-0 p-0 hidden z-10 ltr:left-0 rtl:right-0 md:flex md:ltr:pl-min-md md:rtl:pr-min-md md:ltr:pr-4 md:rtl:pl-4 md:top-navbar-height md:w-sidebar-width group-sidebar:!block group-sidebar:top-navbar-height ltr:group-sidebar:right-0 rtl:group-sidebar:left-0"
       >
@@ -46,6 +49,7 @@ const formatTitle = (content: { title?: string }) =>
               client:idle
               defaultTab={navigation[0].type}
               tabs={navigation.map((tab) => tab.type)}
+              class="max-md:!hidden"
             />
             <ThemeToggleButton slot="theme-toggle" client:idle />
           </LeftSidebar>
@@ -57,7 +61,9 @@ const formatTitle = (content: { title?: string }) =>
         <slot name="secondary-sidebar" />
       </aside>
       <MainColumn class="flex flex-col h-full min-w-0">
-        <slot />
+        <PageContent content={data}>
+          <slot />
+        </PageContent>
       </MainColumn>
     </main>
     <MainColumn>

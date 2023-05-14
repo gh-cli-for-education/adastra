@@ -1,0 +1,194 @@
+/* The integration's default injected base.css file */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Firefox */
+* {
+  @apply [scrollbar-color:theme(colors.neutral/0.3)_transparent];
+}
+
+/* Webkit */
+/* Make scrollbars transparent except for main page scrollbar. */
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-track {
+  @apply bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dark-neutral/30 border-4 border-solid border-transparent bg-clip-content rounded-xl;
+}
+
+nav,
+ul {
+  @apply list-none p-0;
+}
+
+article > section > * + *,
+article > section > blockquote > * + *,
+article > section > :is(ul, ol) > li > * + *,
+article * > astro-slot > * + * {
+  @apply mt-5;
+}
+
+article > section > :is(ul, ol) > li > * + {
+  @apply mb-5;
+}
+
+article > section > :is(ul, ol) > li,
+article > section > :is(ul, ol) > li > * + *,
+article > section > :is(ul, ol) > li > :is(ul, ol) > li,
+article > section > :is(ul, ol) > li > :is(ul, ol) > li > * + * {
+  @apply mt-5;
+}
+
+article > section > :first-child {
+  @apply mt-0;
+}
+
+article > section > :is(ul, ol),
+article > section > :is(ul, ol) :is(ul, ol) {
+  @apply ps-6;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  @apply mb-4 font-bold leading-5;
+}
+
+h1,
+h2 {
+  @apply max-w-[40ch];
+}
+
+:is(h2):not(:first-child) {
+  @apply mt-16;
+}
+
+:is(h3, h4):not(:first-child) {
+  @apply mt-12;
+}
+
+:is(h5, h6):not(:first-child) {
+  @apply mt-8;
+}
+
+:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
+  @apply mt-0;
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl font-black;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-2xl;
+}
+
+h4 {
+  @apply text-xl;
+}
+
+h5 {
+  @apply text-base;
+}
+
+p,
+article ul,
+article ol {
+  @apply leading-7;
+}
+
+p,
+article ul {
+  @apply text-text dark:text-dark-text;
+}
+
+small {
+  @apply text-sm;
+}
+
+a {
+  @apply text-primary dark:text-dark-primary underline-offset-1 items-center gap-2 hover:underline focus:underline focus:outline focus:outline-2 focus:outline-current focus:outline-offset-4;
+}
+
+article > section :is(ul, ol) > * + * {
+  @apply mt-1;
+}
+
+article > section li > :is(p, pre, blockquote):not(:first-child) {
+  @apply mt-4;
+}
+
+article > section ::marker {
+  @apply font-bold;
+}
+
+article > section iframe {
+  @apply w-full h-auto aspect-video;
+}
+
+a > code {
+  @apply relative text-primary dark:text-dark-primary underline-offset-[theme(spacing.padding-block)] md:underline-offset-[theme(spacing.padding-block-md)] xl:underline-offset-[theme(spacing.padding-block-xl)];
+}
+
+strong {
+  @apply font-semibold text-inherit;
+}
+
+table,
+pre {
+  @apply relative py-4 px-8 pe-16 -ml-8 -mr-8 font-mono text-code overflow-y-hidden overflow-x-auto;
+}
+
+code {
+  @apply text-code text-text dark:text-dark-text/80 bg-secondary/10 dark:bg-dark-neutral/10 py-0.5 px-1.5 -my-0.5 mx-0 rounded break-words;
+}
+
+article > section > pre {
+  @apply border border-solid border-transparent dark:border-dark-secondary leading-7 rounded m-0 mt-5 px-0 !bg-code dark:!bg-code-dark shadow shadow-secondary dark:shadow-dark-secondary;
+}
+
+article > section > pre:focus-visible {
+  @apply outline-2 outline outline-primary dark:outline-dark-primary -outline-offset-2;
+}
+
+article > section > pre > code {
+  @apply [all:unset] inline-block !bg-transparent min-w-full;
+}
+
+article > section > pre > code > .line {
+  @apply inline-block min-w-full ps-5 pe-10;
+}
+
+article > section > pre > code span {
+  @apply relative;
+}
+
+article > section > pre > code *::selection {
+  @apply text-white bg-secondary dark:bg-dark-secondary;
+}
+
+*::selection {
+  @apply bg-secondary/10 dark:bg-dark-secondary/30 text-secondary dark:text-white;
+}
+
+/* TODO: Check this styles */
+ul {
+  @apply list-disc;
+}
+
+label {
+  @apply text-base;
+}
+
+button {
+  @apply text-base border-0 py-1.5 px-3;
+}

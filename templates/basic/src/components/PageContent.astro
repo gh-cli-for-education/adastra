@@ -1,0 +1,22 @@
+---
+export interface Props {
+  content: { title: string };
+}
+
+const { content } = Astro.props;
+
+const { title } = content;
+---
+
+<div dir="ltr">
+  <article
+    class="pt-[calc(theme(spacing.navbar-height)+theme(spacing.padding-block))] md:pt-[calc(theme(spacing.navbar-height)+theme(spacing.padding-block-md))] xl:pt-[calc(theme(spacing.navbar-height)+theme(spacing.padding-block-xl))] pb-padding-block md:pb-padding-block-md xl:pb-padding-block-xl px-min md:px-min-md w-full h-full max-w-[80ch] mx-auto flex flex-col overflow-x-hidden"
+  >
+    <section class="mb-16">
+      <header>
+        <h1 set:html={title} />
+      </header>
+      <slot />
+    </section>
+  </article>
+</div>

@@ -5,6 +5,7 @@ import { kebabCaseToTitleCase } from "../../util";
 type SidebarToggleTabGroupProps = {
   defaultTab: string;
   tabs: string[];
+  class?: string;
 };
 
 const SidebarToggleTabGroup: Component<SidebarToggleTabGroupProps> = (
@@ -13,7 +14,9 @@ const SidebarToggleTabGroup: Component<SidebarToggleTabGroupProps> = (
   const [activeTab, setActiveTab] = createSignal<string>(props.defaultTab);
 
   return (
-    <div class="flex border-b-4 border-solid border-neutral/10 dark:border-dark-neutral/10">
+    <div
+      class={`flex border-b-4 border-solid border-neutral/10 dark:border-dark-neutral/10 ${props.class}`}
+    >
       <For each={props.tabs}>
         {(tab) => {
           const checked = () => tab === activeTab();

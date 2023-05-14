@@ -1,0 +1,54 @@
+---
+description: "hellow world test"
+title: "hello world"
+---
+
+We welcome contributions of any size and contributors of any skill level. As an open-source project, we believe in giving back to our contributors. We are happy to help with guidance on PRs, technical writing, and turning any feature idea into a reality.
+
+## Ways to Contribute
+
+There are lots of ways to contribute to the Astro Docs website!
+
+The Astro Docs website is ... an Astro website! Maintaining it requires not only written content but also maintaining Astro code and addressing a11y, CSS, UI, and UX concerns. We also make our documentation available in several languages, so we need help translating the entire site.
+
+You can also make a huge contribution by getting involved by leaving review comments on PRs, adding ideas in existing GitHub Issues and Discussions, and participating in our "Pinned" issue maintenance tasks!
+
+Every PR, especially translation PRs, needs reviewers! Reviewing PRs and leaving comments, suggestions, or an approving "LGTM!" ("Looks Good To Me!") is a great way to get started on Team Docs, and to learn more about Astro.
+
+## Contributor guides
+
+We have several guides with information on how to get started!
+
+- [Main Contributing Guide](https://github.com/withastro/docs/blob/main/CONTRIBUTING.md) - Please consult this first!
+- [Writing Guide](https://github.com/withastro/docs/blob/main/WRITING.md) - Tips for writing in Astro Docs style.
+- [Translating Guide](https://github.com/withastro/docs/blob/main/TRANSLATING.md) - Information on how to help translate Astro Docs into your language.
+- [Recipe Guide](https://github.com/withastro/docs/blob/main/RECIPES.md) - Learn about writing and contributing a recipe.
+
+## Community guides
+
+These are guides for roles within the Astro community.
+
+- [Maintainer Guide](https://github.com/withastro/docs/blob/main/MAINTAINERS.md) - How to maintain this repository as an Astro maintainer.
+- [Support Squad Guide](https://github.com/withastro/docs/blob/main/SUPPORTSQUAD.md) - How to help Team Docs as part of your Support role.
+
+## Our contributors
+
+These `docs` are brought to you by all these helpful people. [Join us on GitHub!](https://github.com/withastro/docs)
+
+# Prueba
+
+```astro
+---
+import { getEntryBySlug } from 'astro:content';
+
+const enterprise = await getEntryBySlug('blog', 'enterprise');
+---
+```
+
+```tsx
+import { h } from "preact";
+
+export default function () {
+  return import.meta.env.SSR ? <div class="spinner"></div> : <FancyComponent />;
+}
+```

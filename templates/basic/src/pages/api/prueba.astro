@@ -1,0 +1,36 @@
+---
+import { getUsers, getUsersWithRole } from "~/utils/users";
+
+const response = await fetch("https://api.github.com/graphql", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `BEARER ${import.meta.env.GITHUB_SECRET}`,
+  },
+  body: JSON.stringify({
+    query: `
+      query ($org: String!, $after: String) {
+        organization(login: $org) {
+          membersWithRole(first: 100, after: $after) {
+            edges {
+              node {
+                login
+                name
+              }
+              role
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      org: "gh-cli-for-education",
+    },
+  }),
+});
+
+const json = await response.json();
+---
+
+{JSON.stringify(await getUsers())}
+{JSON.stringify(await getUsersWithRole())}
