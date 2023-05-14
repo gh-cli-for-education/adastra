@@ -43,7 +43,7 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
                 {(entries) => (
                   <li>
                     <a
-                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-text/80 dark:text-dark-text/80 no-underline block hover:bg-secondary/10 focus:bg-secondary/10 dark:hover:bg-secondary/20 dark:focus:bg-secondary/20 focus:outline focus:outline-2 aria-[current=page]:text-text dark:aria-[current=page]:text-dark-text aria-[current=page]:bg-secundary/20 aria-[current=page]:bg-dark-secundary/40 aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline"
+                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-text/80 dark:text-dark-text/80 !no-underline block hover:bg-secondary/10 focus:bg-secondary/10 dark:hover:bg-secondary/20 dark:focus:bg-secondary/20 focus:outline focus:outline-2 aria-[current=page]:text-text dark:aria-[current=page]:text-dark-text aria-[current=page]:bg-secundary/20 aria-[current=page]:bg-dark-secundary/40 aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline"
                       href={`${props.pathname}${entries.slug}/`}
                       aria-current={`${
                         props.currentPage.endsWith(entries.slug)
