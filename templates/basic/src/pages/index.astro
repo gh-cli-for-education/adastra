@@ -1,11 +1,9 @@
 ---
-import BaseLayout from "~/layouts/BaseLayout.astro";
-
-const {} = Astro.props;
+import { getNavigation } from "adastra-ui";
+const navigation = await getNavigation();
 ---
 
-<BaseLayout
-  data={{ title: "prueba", type: "base", description: "prueba-desc" }}
->
-  <h1>Hola</h1>
-</BaseLayout>
+<meta
+  http-equiv="refresh"
+  content={`0;url=${navigation[0].sections[0].entries[0].slug}`}
+/>

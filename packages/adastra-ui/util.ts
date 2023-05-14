@@ -143,10 +143,9 @@ export const getNavigation = async (): Promise<NavegationTab[]> => {
         tabIndex,
         sectionIndex,
         entryId,
-        entrySlug,
+        `/${tabText}/${sectionText}/${entrySlug}`,
         entryText
       );
-      if (entryIndex == undefined) return;
     }
   });
 

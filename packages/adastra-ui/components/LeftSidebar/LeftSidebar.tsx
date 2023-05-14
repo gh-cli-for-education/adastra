@@ -1,12 +1,11 @@
 import type { JSX, ParentComponent } from "solid-js";
 import { For } from "solid-js";
-import { NavegationTab } from "../../util";
+import { NavegationTab, kebabCaseToTitleCase } from "../../util";
 import NavegationTabContent from "./NavegationTabContent";
 
 type LeftSidebarProps = {
   navigation: NavegationTab[];
   currentPage: string;
-  pathname: string;
   themeToggle?: JSX.Element;
   tabToggle?: JSX.Element;
 };
@@ -20,9 +19,11 @@ const LeftSidebar: ParentComponent<LeftSidebarProps> = (props) => {
           {(tab, index) => (
             <NavegationTabContent
               type={tab.type}
-              active={index() === 0}
+              active={
+                tab.type ===
+                kebabCaseToTitleCase(props.currentPage.split("/")[1])
+              }
               currentPage={props.currentPage}
-              pathname={props.pathname}
               sections={tab.sections}
             />
           )}

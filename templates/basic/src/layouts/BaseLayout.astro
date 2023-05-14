@@ -10,6 +10,7 @@ import {
   ThemeToggleButton,
   getNavigation,
   resetNavigation,
+  kebabCaseToTitleCase,
 } from "adastra-ui";
 import PageContent from "~/components/PageContent.astro";
 
@@ -35,19 +36,19 @@ const formatTitle = (data: { title?: string }) =>
     <title set:html={formatTitle(data)} />
   </head>
   <body
-    class="before:bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 group-sidebar:overflow-hidden"
+    class="before:bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 max-md:group-sidebar:overflow-hidden"
   >
     <Header />
     <main class="min-h-screen">
       <aside
-        class="fixed inset-y-0 p-0 hidden z-10 ltr:left-0 rtl:right-0 md:flex md:ltr:pl-min-md md:rtl:pr-min-md md:ltr:pr-4 md:rtl:pl-4 md:top-navbar-height md:w-sidebar-width group-sidebar:!block group-sidebar:top-navbar-height ltr:group-sidebar:right-0 rtl:group-sidebar:left-0"
+        class="fixed inset-y-0 p-0 hidden z-10 start-0 max-md:group-sidebar:block max-md:group-sidebar:top-navbar-height max-md:group-sidebar:end-0 md:flex md:ps-min-md md:pe-4 md:top-navbar-height md:w-sidebar-width group-sidebar:!block group-sidebar:top-navbar-height ltr:group-sidebar:right-0 rtl:group-sidebar:left-0"
       >
         <slot name="primary-sidebar">
-          <LeftSidebar navigation={navigation} currentPage="" pathname="">
+          <LeftSidebar navigation={navigation} currentPage={currentPage}>
             <SidebarToggleTabGroup
               slot="tab-toggle"
               client:idle
-              defaultTab={navigation[0].type}
+              defaultTab={kebabCaseToTitleCase(currentPage.split("/")[1])}
               tabs={navigation.map((tab) => tab.type)}
               class="max-md:!hidden"
             />

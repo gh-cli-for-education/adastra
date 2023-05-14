@@ -43,4 +43,5 @@ export const tailwindConfig = (tailwindPlugin) => {
 
 export const organizationInfo = {
   name: "gh-cli-for-education",
+  site: "http://localhost:3000/",
 };

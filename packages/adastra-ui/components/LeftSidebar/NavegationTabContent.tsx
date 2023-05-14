@@ -6,7 +6,6 @@ type NavegationTabContentProps = {
   active: boolean;
   sections: Section[];
   currentPage: string;
-  pathname: string;
 };
 
 const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
@@ -20,7 +19,7 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
         >
           <details class="group" open>
             <summary class="text-base font-semibold py-1.5 px-8 md:py-1 md:px-4 list-none marker:hidden cursor-pointer">
-              <h2 class="m-0 p-0 text-base sm:text-sm">
+              <h2 class="m-0 p-0 text-base md:text-sm">
                 {section.name}
                 <svg
                   class="rotate-0 transition-transform align-middle group-open:rotate-90 rtl:rotate-180 m-0 inline"
@@ -43,8 +42,8 @@ const NavegationTabContent: Component<NavegationTabContentProps> = (props) => {
                 {(entries) => (
                   <li>
                     <a
-                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-text/80 dark:text-dark-text/80 !no-underline block hover:bg-secondary/10 focus:bg-secondary/10 dark:hover:bg-secondary/20 dark:focus:bg-secondary/20 focus:outline focus:outline-2 aria-[current=page]:text-text dark:aria-[current=page]:text-dark-text aria-[current=page]:bg-secundary/20 aria-[current=page]:bg-dark-secundary/40 aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline"
-                      href={`${props.pathname}${entries.slug}/`}
+                      class="m-0.5 py-1.5 px-8 md:py-1 md:px-4 text-text/80 dark:text-dark-text/80 !no-underline block hover:bg-secondary/10 focus:bg-secondary/10 dark:hover:bg-secondary/20 dark:focus:bg-secondary/20 focus:outline focus:outline-2 aria-[current=page]:text-text dark:aria-[current=page]:text-dark-text aria-[current=page]:bg-secondary/20 dark:aria-[current=page]:bg-dark-secondary/40 aria-[current=page]:font-medium aria-[current=page]:outline-1 aria-[current=page]:outline aria-[current=page]:outline-transparent aria-[current=page]:focus:outline-2 aria-[current=page]:focus:outline"
+                      href={`${entries.slug}`}
                       aria-current={`${
                         props.currentPage.endsWith(entries.slug)
                           ? "page"

@@ -4,10 +4,20 @@ import { allPages } from "~/content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 
 export const getStaticPaths = async () => {
-  return allPages.map((page) => {
-    const slug = page.slug;
-    return { params: { slug }, props: page };
-  });
+  return allPages
+    .map((page) => {
+      const slugParts = page.slug.split("/").map((value) => {
+        const [idText, ...textArray] = value.split("-");
+        if (Number.isNaN(Number(idText))) return;
+
+        return textArray.join("-");
+      });
+      if (slugParts.some((value) => value == undefined)) return;
+
+      const slug = `${slugParts.join("/")}`;
+      return { params: { slug }, props: page };
+    })
+    .filter((value) => value != undefined);
 };
 
 export type Props = CollectionEntry<"docs">;
