@@ -34,6 +34,14 @@ const formatTitle = (data: { title?: string }) =>
   <head>
     <HeadCommon />
     <title set:html={formatTitle(data)} />
+    <script is:inline>
+      if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      )
+        document.documentElement.classList.add("dark");
+    </script>
   </head>
   <body
     class="before:bg-gradient-to-b from-bg-from to-bg-to dark:from-dark-bg-from dark:to-dark-bg-to before:content-[''] before:block before:fixed before:inset-0 before:-z-[999] text-text dark:text-dark-text flex flex-col min-h-screen font-sans text-base leading-6 max-md:group-sidebar:overflow-hidden"
