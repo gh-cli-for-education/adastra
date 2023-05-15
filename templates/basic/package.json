@@ -10,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^0.19.1",
     "@astrojs/solid-js": "^2.1.0",
     "@astrojs/tailwind": "^3.1.2",
     "adastra-ui": "workspace:*",

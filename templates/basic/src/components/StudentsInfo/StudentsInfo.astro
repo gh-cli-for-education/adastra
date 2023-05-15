@@ -1,0 +1,10 @@
+---
+import { getUsers } from "~/utils/users";
+import StudentCard from "./StudentCard.astro";
+
+const studentsInfo = await getUsers(["MEMBER"]);
+---
+
+<ul class="list-none">
+  {studentsInfo.map((student) => <StudentCard studentInfo={student} />)}
+</ul>
