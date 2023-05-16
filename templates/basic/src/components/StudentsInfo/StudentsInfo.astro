@@ -1,10 +1,13 @@
 ---
-import { getUsers } from "~/utils/users";
+import { getTeams, getUsers } from "~/utils/users";
 import StudentCard from "./StudentCard.astro";
 
 const studentsInfo = await getUsers(["MEMBER"]);
+// const promises = studentsInfo.map((info) => getTeams(info));
+// const a = await Promise.all(promises);
+// console.log(a);
 ---
 
-<ul class="list-none">
+<ul class="list-none" >
   {studentsInfo.map((student) => <StudentCard studentInfo={student} />)}
 </ul>

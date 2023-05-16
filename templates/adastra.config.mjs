@@ -42,6 +42,7 @@ export const tailwindConfig = (tailwindPlugin) => {
 };
 
 export const organizationInfo = {
-  name: "gh-cli-for-education",
+  // name: "gh-cli-for-education",
+  name: "ULL-ESIT-PL-2122",
   site: "http://localhost:3000/",
 };

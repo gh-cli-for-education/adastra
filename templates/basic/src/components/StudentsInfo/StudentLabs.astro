@@ -1,0 +1,96 @@
+---
+import type { StudentLab } from "./StudentCard.astro";
+
+export interface Props {
+  studentLabs: StudentLab[];
+}
+
+const { studentLabs } = Astro.props;
+---
+
+<li
+  class="block rounded-xl border-solid border-2 border-primary dark:border-dark-primary bg-secondary/10 dark:bg-dark-secondary/10 shadow shadow-primary dark:shadow-dark-primary mt-4"
+>
+  <details class="group/labs">
+    <summary
+      class="text-base font-semibold py-1.5 px-8 md:py-1 md:px-4 list-none marker:hidden cursor-pointer"
+    >
+      <h3 class="m-0 p-0 text-lg">
+        Related Labs
+
+        <svg
+          class="rotate-0 transition-transform align-middle group-open/labs:rotate-90 rtl:rotate-180 m-0 inline"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 1 16 16"
+          width="16"
+          height="16"
+          aria-hidden="true"
+        >
+          <path
+            class="fill-current"
+            fill-rule="evenodd"
+            d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"
+          ></path>
+        </svg>
+      </h3>
+    </summary>
+    <ol class="!list-decimal px-8 pb-4 pt-2">
+      {
+        studentLabs.map(({ name, url }) => (
+          <li>
+            <h3 class="text-lg font-semibold">{name}</h3>
+            <ul>
+              <li class="text-base">
+                <a class="font-bold" href={url} target="_blank">
+                  Repo
+                </a>
+              </li>
+              <li class="text-base">
+                <a class="font-bold" href={`${url}/commits`} target="_blank">
+                  Commits
+                </a>
+              </li>
+              <li class="text-base">
+                <a
+                  class="font-bold"
+                  href={`${url}/graphs/commit-activity`}
+                  target="_blank"
+                >
+                  Commit Activity Graph
+                </a>
+              </li>
+              <li class="text-base">
+                <a class="font-bold" href={`${url}/pulse`} target="_blank">
+                  Pulse Activity
+                </a>
+              </li>
+              <li class="text-base">
+                <a
+                  class="font-bold"
+                  href={`${url}/graphs/traffic`}
+                  target="_blank"
+                >
+                  Traffic
+                </a>
+              </li>
+              <li class="text-base">
+                <a
+                  class="font-bold"
+                  href={`${url}/graphs/code-frequency`}
+                  target="_blank"
+                >
+                  Code Frequency
+                </a>
+              </li>
+              <li class="text-base">
+                <a class="font-bold" href={`${url}/projects`} target="_blank">
+                  Projects
+                </a>
+              </li>
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+  </details>
+</li>

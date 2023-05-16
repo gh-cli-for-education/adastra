@@ -1,26 +1,45 @@
 ---
+import { labsTemplates } from "~/content";
 import type { UserInfo } from "~/utils/users";
 import { getTeams } from "~/utils/users";
+import StudentLabs from "./StudentLabs.astro";
 
 export interface Props {
   studentInfo: UserInfo;
 }
 
 const { studentInfo } = Astro.props;
-const studentTeams = await getTeams(studentInfo);
+const [studentTeam] = await getTeams(studentInfo);
+
+export type StudentLab = {
+  url: string;
+  name: string;
+  templateKey: string;
+};
+
+const studentLabs: StudentLab[] = (studentTeam?.repositories
+  .map(({ url, templateRepository }) => {
+    const lab = labsTemplates.find(
+      ({ templateKey }) => templateRepository === templateKey
+    );
+    if (lab == undefined) return;
+
+    return { ...lab, url };
+  })
+  .filter((value) => value != undefined) ?? []) as StudentLab[];
 ---
 
 <li
-  class="mb-4 block md:mb-7 rounded-xl border-solid border-2 border-secondary dark:border-dark-secondary"
+  class="mb-4 block md:mb-7 rounded-xl border-solid border-2 border-primary dark:border-dark-primary bg-secondary/10 dark:bg-dark-secondary/10 shadow shadow-primary dark:shadow-dark-primary"
 >
-  <details class="group">
+  <details class="group/card">
     <summary
       class="text-base font-semibold py-1.5 px-8 md:py-1 md:px-4 list-none marker:hidden cursor-pointer"
     >
       <h2 class="m-0 p-0 text-xl">
-        {studentInfo.name}
+        {studentInfo.name ?? studentInfo.login}
         <svg
-          class="rotate-0 transition-transform align-middle group-open:rotate-90 rtl:rotate-180 m-0 inline"
+          class="rotate-0 transition-transform align-middle group-open/card:rotate-90 rtl:rotate-180 m-0 inline"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 1 16 16"
           width="16"
@@ -35,21 +54,19 @@ const studentTeams = await getTeams(studentInfo);
         </svg>
       </h2>
     </summary>
-    <ul class="list-none">
+    <ul class="list-none px-8 pb-4 pt-2">
       <li class="">
         <img src={studentInfo.avatarUrl} alt="" />
       </li>
       <li class="text-lg">
         Team
-        <a class="font-bold" href={studentTeams[0]?.url} target="_blank">
-          {studentTeams[0]?.name}
+        <a class="font-bold" href={studentTeam?.url} target="_blank">
+          {studentTeam?.name}
         </a>
       </li>
       <li class="text-lg">
-        <a
-          class="font-bold"
-          href={studentTeams[0]?.repositoriesUrl}
-          target="_blank">Repositories</a
+        <a class="font-bold" href={studentTeam?.repositoriesUrl} target="_blank"
+          >Repositories</a
         >
       </li>
       <li class="text-lg">
@@ -66,6 +83,7 @@ const studentTeams = await getTeams(studentInfo);
         >
         at GitHub
       </li>
+      <StudentLabs studentLabs={studentLabs} />
     </ul>
   </details>
 </li>

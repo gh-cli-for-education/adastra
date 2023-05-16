@@ -111,11 +111,17 @@ export const getNavigation = async (): Promise<NavegationTab[]> => {
   if (navegationTabs != undefined) return navegationTabs;
 
   const allPages = await getCollection("docs");
-  const allRoutes = allPages.map(({ slug }) => slug);
-  const routes = allRoutes.map((route) => route.split("/"));
+  const allRoutes = allPages.map(({ slug, data }) => ({
+    slug: slug,
+    title: data.title,
+  }));
+  const routes = allRoutes.map(({ slug, title }) => ({
+    route: slug.split("/"),
+    title,
+  }));
 
   const navigationWithId: NavegationTabWithId[] = [];
-  routes.forEach((route) => {
+  routes.forEach(({ route, title }) => {
     if (route == undefined) return;
     if (route.length < 2 || route.length > 3) return;
 
@@ -137,7 +143,7 @@ export const getNavigation = async (): Promise<NavegationTab[]> => {
       if (sectionIndex == undefined) return;
 
       const { id: entryId, text: entrySlug } = extractIdAndText(entry);
-      const entryText = kebabCaseToTitleCase(entrySlug);
+      const entryText = title;
       const entryIndex = getEntryIndex(
         navigationWithId,
         tabIndex,

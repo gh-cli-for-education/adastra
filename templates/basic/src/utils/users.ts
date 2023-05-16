@@ -105,6 +105,7 @@ export const getUsersWithRole = async (): Promise<UserInfoWithRole[]> => {
 export type RepositoryInfo = {
   name: string;
   url: string;
+  templateRepository?: string;
 };
 
 export type TeamsInfo = {
@@ -122,7 +123,11 @@ export type TeamsQuery = {
           node: Omit<TeamsInfo, "repositories"> & {
             repositories: {
               edges: {
-                node: RepositoryInfo;
+                node: Omit<RepositoryInfo, "templateRepository"> & {
+                  templateRepository?: {
+                    name: string;
+                  };
+                };
               }[];
             };
           };
@@ -141,19 +146,22 @@ export const getTeams = async (user: UserInfo): Promise<TeamsInfo[]> => {
     },
     body: JSON.stringify({
       query: `
-        query teams ($org: String!) {
+        query ($org: String!, $user: [String!]!) {
           organization(login: $org) {
-            teams(first: 100, userLogins: ["${user.login}"]) {
+            teams(first: 100, userLogins: $user) {
               edges {
                 node {
                   name,
                   url,
-                  repositoriesUrl
+                  repositoriesUrl,
                   repositories {
                     edges {
                       node {
                         name,
-                        url
+                        url,
+                        templateRepository {
+                          name
+                        }
                       }
                     }
                   }
@@ -165,14 +173,19 @@ export const getTeams = async (user: UserInfo): Promise<TeamsInfo[]> => {
       `,
       variables: {
         org: organizationInfo.name,
+        user: [user.login],
       },
     }),
   });
 
   const { data }: TeamsQuery = await response.json();
+
   const teams = data.organization.teams.edges.map(({ node }) => ({
     ...node,
-    repositories: node.repositories.edges.map(({ node }) => ({ ...node })),
+    repositories: node.repositories.edges.map(({ node }) => ({
+      ...node,
+      templateRepository: node.templateRepository?.name,
+    })),
   }));
 
   return teams;
