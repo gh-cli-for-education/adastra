@@ -1,0 +1,21 @@
+---
+import { getRelatedLabsInfo } from "~/utils/labs";
+
+export interface Props {
+  relatedLabs: string[];
+}
+
+const { relatedLabs } = Astro.props;
+const relatedLabsInfo = getRelatedLabsInfo(relatedLabs);
+---
+
+<h2>Related Labs</h2>
+<ul>
+  {
+    relatedLabsInfo.map(({ slug, title }) => (
+      <li>
+        <a class="font-bold" href={slug}>{title}</a>
+      </li>
+    ))
+  }
+</ul>

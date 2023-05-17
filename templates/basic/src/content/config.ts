@@ -8,14 +8,23 @@ export const baseSchema = z
   })
   .strict();
 
-export const labSchema = baseSchema
-  .extend({
-    type: z.literal("lab"),
-    templateKey: z.string(),
-  });
+export const labSchema = baseSchema.extend({
+  type: z.literal("lab"),
+  key: z.string(),
+  templateKey: z.string(),
+});
+
+export const classSchema = baseSchema.extend({
+  type: z.literal("class"),
+  relatedLabs: z.array(z.string()),
+});
 
 export type LabEntry = CollectionEntry<"docs"> & {
   data: z.infer<typeof labSchema>;
+};
+
+export type ClassEntry = CollectionEntry<"docs"> & {
+  data: z.infer<typeof classSchema>;
 };
 
 export const isLabEntry = (
@@ -24,8 +33,14 @@ export const isLabEntry = (
   return entry.data.type === "lab";
 };
 
+export const isClassEntry = (
+  entry: CollectionEntry<"docs">
+): entry is ClassEntry => {
+  return entry.data.type === "class";
+};
+
 const docs = defineCollection({
-  schema: z.union([baseSchema, labSchema]),
+  schema: z.union([baseSchema, labSchema, classSchema]),
 });
 
 export const collections = { docs };

@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import RelatedLabs from "~/components/RelatedLabs.astro";
 import { allPages } from "~/content";
 import BaseLayout from "~/layouts/BaseLayout.astro";
 
@@ -26,5 +27,8 @@ const { Content } = await render();
 ---
 
 <BaseLayout data={data}>
-  <Content />
+  <>
+    <Content />
+    {data.type === "class" && <RelatedLabs relatedLabs={data.relatedLabs} />}
+  </>
 </BaseLayout>

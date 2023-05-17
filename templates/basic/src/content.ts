@@ -1,8 +1,9 @@
 import { getCollection } from "astro:content";
-import { isLabEntry } from "~/content/config";
+import { isClassEntry, isLabEntry } from "~/content/config";
 
 export const allPages = await getCollection("docs");
 export const labPages = allPages.filter(isLabEntry);
+export const classPages = allPages.filter(isClassEntry);
 
 export type LabTemplates = {
   name: string;
