@@ -1,6 +1,8 @@
 ---
+type: subject
 description: "hellow world test"
 title: "Getting Started"
+key: getting-started
 ---
 
 We welcome contributions of any size and contributors of any skill level. As an open-source project, we believe in giving back to our contributors. We are happy to help with guidance on PRs, technical writing, and turning any feature idea into a reality.

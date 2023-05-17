@@ -17,6 +17,12 @@ export const labSchema = baseSchema.extend({
 export const classSchema = baseSchema.extend({
   type: z.literal("class"),
   relatedLabs: z.array(z.string()),
+  relatedSubjects: z.array(z.string()),
+});
+
+export const subjectSchema = baseSchema.extend({
+  type: z.literal("subject"),
+  key: z.string(),
 });
 
 export type LabEntry = CollectionEntry<"docs"> & {
@@ -25,6 +31,10 @@ export type LabEntry = CollectionEntry<"docs"> & {
 
 export type ClassEntry = CollectionEntry<"docs"> & {
   data: z.infer<typeof classSchema>;
+};
+
+export type SubjectEntry = CollectionEntry<"docs"> & {
+  data: z.infer<typeof subjectSchema>;
 };
 
 export const isLabEntry = (
@@ -39,8 +49,14 @@ export const isClassEntry = (
   return entry.data.type === "class";
 };
 
+export const isSubjectEntry = (
+  entry: CollectionEntry<"docs">
+): entry is SubjectEntry => {
+  return entry.data.type === "subject";
+};
+
 const docs = defineCollection({
-  schema: z.union([baseSchema, labSchema, classSchema]),
+  schema: z.union([baseSchema, labSchema, classSchema, subjectSchema]),
 });
 
 export const collections = { docs };
