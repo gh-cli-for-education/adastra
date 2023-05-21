@@ -19,7 +19,7 @@ const init = async ({ cwd }: { cwd: string }) => {
       { cwd, stdio: "ignore" }
     );
   } catch (e) {
-    console.log(e)
+    console.error(e)
   }
 };
 
