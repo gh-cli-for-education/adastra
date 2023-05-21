@@ -3,7 +3,7 @@ import { tailwindConfig } from "../adastra.config.mjs";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  presets: [tailwindConfig(plugin)],
+  presets: [tailwindConfig],
   content: [
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./node_modules/adastra-ui/components/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",

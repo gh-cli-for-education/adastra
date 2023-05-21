@@ -1,0 +1,7 @@
+---
+import { getOrganizationInfo } from "~/utils/graphql";
+
+const { projectsUrl} = await getOrganizationInfo();
+---
+
+<meta http-equiv="refresh" content={`0;url=${projectsUrl}`} />

@@ -190,3 +190,46 @@ export const getTeams = async (user: UserInfo): Promise<TeamsInfo[]> => {
 
   return teams;
 };
+
+export type OrganizationInfo = {
+  url: string;
+  teamsUrl: string;
+  projectsUrl: string;
+};
+
+export type OrganizationInfoQuery = {
+  data: {
+    organization: OrganizationInfo;
+  };
+};
+
+export const getOrganizationInfo = async (): Promise<OrganizationInfo> => {
+  const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `BEARER ${import.meta.env.GITHUB_SECRET}`,
+    },
+    body: JSON.stringify({
+      query: `
+        query ($org: String!) {
+          organization(login: $org) {
+            url
+            teamsUrl
+            projectsUrl
+            
+          }
+        }
+      `,
+      variables: {
+        org: organizationInfo.name,
+      },
+    }),
+  });
+
+  const { data }: OrganizationInfoQuery = await response.json();
+
+  const { organization } = data;
+
+  return organization;
+};

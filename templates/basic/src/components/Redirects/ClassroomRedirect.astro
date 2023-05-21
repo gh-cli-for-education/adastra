@@ -1,0 +1,7 @@
+---
+import { organizationInfo } from "../../../../adastra.config.mjs";
+
+const { classroomUrl } = organizationInfo;
+---
+
+<meta http-equiv="refresh" content={`0;url=${classroomUrl ?? "/404"}`} />
