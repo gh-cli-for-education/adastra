@@ -2,6 +2,7 @@ import { color, spinner } from "@astrojs/cli-kit";
 import { downloadTemplate } from "giget";
 import fs from "node:fs";
 import path from "node:path";
+import symlinkDir from "symlink-dir";
 import { error, info, title } from "../messages.js";
 import type { Context } from "./context.js";
 
@@ -81,6 +82,46 @@ const copyTemplate = async (template: string, context: Context) => {
   );
 
   fs.writeFileSync(`${context.cwd}/.env`, "GITHUB_SECRET=\n");
+  fs.writeFileSync(
+    `${context.cwd}/.gitignore`,
+    `# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+`
+  );
+
+  fs.symlinkSync(`../.env`, `${context.cwd}/.adastra/.env`, "file");
+  symlinkDir(`${context.cwd}/.adastra/public`, `${context.cwd}/public`);
+  symlinkDir(
+    `${context.cwd}/.adastra/src/content/docs/1-activities/1-classes`,
+    `${context.cwd}/classes`
+  );
+  symlinkDir(
+    `${context.cwd}/.adastra/src/content/docs/1-activities/2-labs`,
+    `${context.cwd}/labs`
+  );
+  symlinkDir(
+    `${context.cwd}/.adastra/src/content/docs/1-activities/3-subjects`,
+    `${context.cwd}/subjects`
+  );
 
   await Promise.all([...updateFiles]);
 };
