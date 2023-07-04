@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.2.0
+
+### Minor Changes
+
+- 7f3f7f3: Fix install time
+
 ## 0.1.2
 
 ### Patch Changes
