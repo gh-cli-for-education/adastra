@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.0
+
+### Minor Changes
+
+- 05f3073: Add symbolic links
+
 ## 0.2.0
 
 ### Minor Changes
