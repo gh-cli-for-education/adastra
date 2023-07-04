@@ -1,5 +1,7 @@
 import { organizationInfo } from "../../../adastra.config.mjs";
 
+const { organizationName } = organizationInfo.github;
+
 export type UserInfo = {
   login: string;
   name: string;
@@ -46,7 +48,7 @@ export const getUsers = async (roleFilter?: string[]): Promise<UserInfo[]> => {
         }
       `,
       variables: {
-        org: organizationInfo.name,
+        org: organizationName,
       },
     }),
   });
@@ -89,7 +91,7 @@ export const getUsersWithRole = async (): Promise<UserInfoWithRole[]> => {
         }
       `,
       variables: {
-        org: organizationInfo.name,
+        org: organizationName,
       },
     }),
   });
@@ -172,7 +174,7 @@ export const getTeams = async (user: UserInfo): Promise<TeamsInfo[]> => {
         }
       `,
       variables: {
-        org: organizationInfo.name,
+        org: organizationName,
         user: [user.login],
       },
     }),
@@ -222,7 +224,7 @@ export const getOrganizationInfo = async (): Promise<OrganizationInfo> => {
         }
       `,
       variables: {
-        org: organizationInfo.name,
+        org: organizationName,
       },
     }),
   });

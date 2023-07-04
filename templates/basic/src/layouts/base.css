@@ -35,7 +35,7 @@ article * > astro-slot > * + * {
   @apply mt-5;
 }
 
-article > section > :is(ul, ol) > li > * + {
+article > section > :is(ul, ol) > li > * + * {
   @apply mb-5;
 }
 

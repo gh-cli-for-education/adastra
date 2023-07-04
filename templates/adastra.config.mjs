@@ -33,14 +33,24 @@ export const tailwindConfig = {
       },
       fontSize: {
         code: "1rem",
+        title: "2rem",
+        "title-sm": "3rem",
+        "title-md": "4rem",
       },
     },
   },
 };
 
 export const organizationInfo = {
-  // name: "gh-cli-for-education",
-  name: "ULL-ESIT-PL-2122",
+  pageTitle: "Test Prueba 1",
   site: "http://localhost:3000/",
-  classroomUrl: undefined,
+  github: {
+    organizationName: "ULL-ESIT-PL-2122",
+    classroomUrl: "",
+  },
+  virtualCampus: {
+    teachingGuideUrl: "",
+    campusUrl: "",
+    labsUrl: "",
+  },
 };

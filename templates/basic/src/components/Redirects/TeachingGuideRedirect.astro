@@ -1,0 +1,7 @@
+---
+import { organizationInfo } from "../../../../adastra.config.mjs";
+
+const { teachingGuideUrl } = organizationInfo.virtualCampus;
+---
+
+<meta http-equiv="refresh" content={`0;url=${teachingGuideUrl || "/404"}`} />
