@@ -13,7 +13,7 @@
     "@astrojs/mdx": "^0.19.1",
     "@astrojs/solid-js": "^2.1.0",
     "@astrojs/tailwind": "^3.1.2",
-    "adastra-ui": "workspace:*",
+    "adastra-ui": "*",
     "astro": "^2.4.2",
     "solid-js": "^1.4.3",
     "tailwindcss": "^3.3.2"

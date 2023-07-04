@@ -12,7 +12,7 @@ const install = async ({
 }) => {
   const installExec = execa(pkgManager, ["install"], { cwd });
   return new Promise<void>((resolve, reject) => {
-    setTimeout(() => reject(`Request timed out after one minute`), 60_000);
+    setTimeout(() => reject(`Request timed out after one minute`), 300_000);
     installExec.on("error", (e) => reject(e));
     installExec.on("close", () => resolve());
   });

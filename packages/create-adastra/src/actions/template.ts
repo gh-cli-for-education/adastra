@@ -8,7 +8,10 @@ import type { Context } from "./context.js";
 const FILES_TO_UPDATE = {
   "package.json": (
     file: string,
-    overrides: { name: string; scripts: Record<string, string> }
+    overrides: {
+      name: string;
+      scripts: Record<string, string>;
+    }
   ) =>
     fs.promises.readFile(file, "utf-8").then((value) => {
       // Match first indent in the file or fallback to `\t`
@@ -50,10 +53,6 @@ const copyTemplate = async (template: string, context: Context) => {
     }
   }
 
-  // It's possible the repo exists (ex. `withastro/astro`),
-  // But the template route is invalid (ex. `withastro/astro/examples/DNE`).
-  // `giget` doesn't throw for this case,
-  // so check if the directory is still empty as a heuristic.
   if (fs.readdirSync(context.cwd + "/.adastra").length === 0) {
     throw new Error(
       `Template ${color.reset(template)} ${color.dim("is empty!")}`
@@ -72,11 +71,16 @@ const copyTemplate = async (template: string, context: Context) => {
       if (fs.existsSync(fileLoc)) {
         return update(fileLoc, {
           name: context.projectName!,
-          scripts: { dev: "prueba" },
+          scripts: {
+            dev: 'astro dev --root ".\\.adastra"',
+            build: 'astro build --root ".\\.adastra"',
+          },
         });
       }
     }
   );
+
+  fs.writeFileSync(`${context.cwd}/.env`, "GITHUB_SECRET=\n");
 
   await Promise.all([...updateFiles]);
 };
