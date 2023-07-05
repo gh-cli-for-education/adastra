@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.1
+
+### Patch Changes
+
+- f746f6a: Add AdAstra config file
+
 ## 0.3.0
 
 ### Minor Changes
