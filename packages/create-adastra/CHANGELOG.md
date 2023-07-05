@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.2
+
+### Patch Changes
+
+- 95c88b2: Fix cwd config
+
 ## 0.3.1
 
 ### Patch Changes
