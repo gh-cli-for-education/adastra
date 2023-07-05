@@ -109,7 +109,7 @@ pnpm-debug.log*
   );
 
   fs.writeFileSync(
-    "adastra.config.mjs",
+    `${context.cwd}/adastra.config.mjs`,
     `/**
  * @param {import('./node_modules/tailwindcss/plugin')} tailwindPlugin
  * @return {import('./node_modules/tailwindcss').Config}
