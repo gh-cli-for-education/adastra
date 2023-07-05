@@ -5,7 +5,7 @@ import { tailwindConfig } from "../adastra.config.mjs";
 export default {
   presets: [tailwindConfig],
   content: [
-    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "./.adastra/src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./node_modules/adastra-ui/components/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
   ],
   theme: {},
