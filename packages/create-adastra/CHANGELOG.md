@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.4
+
+### Patch Changes
+
+- d285ddd: Delete unused site param
+
 ## 0.3.3
 
 ### Patch Changes
