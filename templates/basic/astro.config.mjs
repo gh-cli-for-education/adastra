@@ -1,7 +1,6 @@
 import solidJs from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
-import { organizationInfo } from "../adastra.config.mjs";
 
 import mdx from "@astrojs/mdx";
 
@@ -16,6 +15,5 @@ export default defineConfig({
     solidJs(),
     mdx(),
   ],
-  site: organizationInfo.site,
   outDir: "../dist",
 });

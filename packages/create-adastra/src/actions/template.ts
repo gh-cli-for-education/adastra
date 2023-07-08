@@ -155,7 +155,6 @@ export const tailwindConfig = {
 
 export const organizationInfo = {
   pageTitle: "${context.projectName}",
-  site: "http://localhost:3000/",
   github: {
     organizationName: "",
     classroomUrl: "",

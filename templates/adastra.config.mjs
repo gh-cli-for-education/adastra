@@ -43,7 +43,6 @@ export const tailwindConfig = {
 
 export const organizationInfo = {
   pageTitle: "Test Prueba 1",
-  site: "http://localhost:3000/",
   github: {
     organizationName: "ULL-ESIT-PL-2122",
     classroomUrl: "",
