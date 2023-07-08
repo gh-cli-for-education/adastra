@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.3
+
+### Patch Changes
+
+- 7919660: Correct rooting for project init
+
 ## 0.3.2
 
 ### Patch Changes
