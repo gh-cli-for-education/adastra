@@ -73,8 +73,8 @@ const copyTemplate = async (template: string, context: Context) => {
         return update(fileLoc, {
           name: context.projectName!,
           scripts: {
-            dev: 'astro dev --root ".\\.adastra"',
-            build: 'astro build --root ".\\.adastra"',
+            dev: 'astro dev --root "./.adastra"',
+            build: 'astro build --root "./.adastra"',
           },
         });
       }
