@@ -1,5 +1,11 @@
 # create-adastra-lms
 
+## 0.3.5
+
+### Patch Changes
+
+- de779bb: change gitignore from creation to move
+
 ## 0.3.4
 
 ### Patch Changes
