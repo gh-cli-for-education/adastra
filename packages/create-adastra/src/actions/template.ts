@@ -81,32 +81,13 @@ const copyTemplate = async (template: string, context: Context) => {
     }
   );
 
-  fs.writeFileSync(`${context.cwd}/.env`, "GITHUB_SECRET=\n");
-  fs.writeFileSync(
-    `${context.cwd}/.gitignore`,
-    `# build output
-dist/
+  await Promise.all([...updateFiles]);
 
-# generated types
-.astro/
-
-# dependencies
-node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-`
+  fs.renameSync(
+    `${context.cwd}/.adastra/.gitignore`,
+    `${context.cwd}/.gitignore`
   );
+  fs.writeFileSync(`${context.cwd}/.env`, "GITHUB_SECRET=\n");
 
   fs.writeFileSync(
     `${context.cwd}/adastra.config.mjs`,
@@ -182,8 +163,6 @@ export const organizationInfo = {
     `${context.cwd}/.adastra/src/content/docs/1-activities/3-subjects`,
     `${context.cwd}/subjects`
   );
-
-  await Promise.all([...updateFiles]);
 };
 
 export const template = async (context: Context) => {
